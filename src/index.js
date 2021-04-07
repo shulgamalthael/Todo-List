@@ -1,23 +1,10 @@
-import { initTodoListHandlers } from './scripts/todoList.js';
-import { renderTasks } from './scripts/renderer.js';
-import { getTasksList } from './scripts/tasksGateway.js';
-import { setItem } from './scripts/storage.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.scss';
+import App from './App.jsx'
 
-document.addEventListener('DOMContentLoaded', () => {
-    getTasksList()
-        .then(tasksList => {
-            setItem('tasksList', tasksList)
-            renderTasks();
-        });
 
-    initTodoListHandlers();
-});
-
-const onStorageChange = e => {
-    console.log(e)
-    if (e.key === 'tasksList') {
-        renderTasks();
-    }
-};
-
-window.addEventListener('storage', onStorageChange);
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
